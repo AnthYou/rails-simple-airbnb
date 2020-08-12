@@ -1,8 +1,22 @@
-<h1>All our flats (<%= @flats.length %>)</h1>
-
-<% @flats.each do |flat| %>
-  <%= flat.name %>
-  <%= flat.address %>
-  <%= flat.number_of_guests %>
-  <%= flat.price_per_night %>
-  <% end %>
+<div class="container">
+  <h1>All our flats (<%= @flats.length %>)</h1>
+  <div class="d-flex">
+    <div class="row">
+      <% @flats.each do |flat| %>
+        <div class="card mr-2 mb-2" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= flat.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= flat.address %></h6>
+            <p class="card-text">
+              <i class="material-icons">people</i> <%= flat.number_of_guests %>
+              <i class="material-icons">euro_symbol</i> <%= flat.price_per_night %>
+            </p>
+            <%= link_to 'More info', flat_path(flat), class: 'card-link badge badge-primary' %>
+            <%= link_to 'Edit', edit_flat_path(flat), class: 'card-link badge badge-info' %>
+            <%= link_to 'Remove', flat_path(flat), method: :delete, data: { confirm: 'Are you sure?'}, class: 'card-link badge badge-danger' %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
